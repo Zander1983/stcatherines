@@ -4,7 +4,7 @@
  */
 
     var project_title = "stcatherines", 
-        project_number = "xx", 
+        project_number = "135777283567", 
         push_server_url = "http://schoolspace.me", 
         feed_domain = "http://stcatharines.schoolspace.ie", 
         standard_device_id = "63843", 
@@ -14,7 +14,7 @@
         gmail = "stcatharines.vocational@gmail.com",
         flickr_api_key = "3ed5898146a964c006abeeb17b77e411",
         flickr_user_id = "114709828@N06",
-        in_browser = true,
+        in_browser = false,
         is_push = false;  
   
 
