@@ -20,7 +20,7 @@ define(function (require) {
 
         routes: {
             /****All generic routes from joomla feeds****/
-            "": "getHome",
+            "": "getGeneric",
             "news": "getGeneric",
             "news-item/:id": "getGenericItem",
             "courses": "getGeneric",
@@ -178,16 +178,7 @@ define(function (require) {
         /******************ENDING STANDARD HELPER FUNCTIONS*******************/
         
         /*******************ROUTES START HERE***************************/
-     
-        getHome: function () {
-                
-        
-                if(is_push===false){
-                    that.getGeneric();                       
-                }
-           
-        },
-        
+
         
         getGeneric: function () {
          
@@ -225,9 +216,9 @@ define(function (require) {
                         success: function (collection) {
                             Useful.correctView(that.body);
 
-                            //if(Backbone.history.fragment==="" || Backbone.history.fragment==="news"){
+                            if(is_push===false){
                                 slider.slidePage(new GenericList({collection: collection}).$el);                         
-                            //}
+                            }
 
                             Useful.hideSpinner();
 
