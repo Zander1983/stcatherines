@@ -219,6 +219,7 @@ define(function (require) {
                             if(is_push===false){
                                 slider.slidePage(new GenericList({collection: collection}).$el);                         
                             }
+                            is_push = false;
 
                             Useful.hideSpinner();
 
