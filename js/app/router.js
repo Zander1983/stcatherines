@@ -215,8 +215,7 @@ define(function (require) {
                         update:false,
                         success: function (collection) {
                             Useful.correctView(that.body);
-                            alert('in generic and is_push is');
-                            alert(is_push);
+        
                             if(is_push===false){
                                 slider.slidePage(new GenericList({collection: collection}).$el);                         
                             }
