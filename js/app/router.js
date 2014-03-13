@@ -577,6 +577,11 @@ define(function (require) {
                         that.api_key = test_api_key;
                     }
                     
+                    if(is_emulator===true){
+                        that.device_id = test_device_id;
+                        that.api_key = test_api_key;
+                    }
+                    
                     if(typeof(that.device_id)==='undefined' || that.device_id===null){
                         that.setDeviceDetails();
                     }
@@ -591,7 +596,7 @@ define(function (require) {
 
                             flickr_user_id = data.get('flickr_user_id');
                             flickr_api_key = data.get('flickr_api_key');
-                            
+                       
                             albums = new model.AlbumCollection({flickr_api_key:flickr_api_key, flickr_user_id:flickr_user_id});
 
                             albums.fetch({
