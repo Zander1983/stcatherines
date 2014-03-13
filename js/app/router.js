@@ -14,6 +14,9 @@ define(function (require) {
         genericmodel,
         photos,
         albums,
+        project,
+        flickr_api_key,
+        flickr_user_id,
         that;
 
     return Backbone.Router.extend({
@@ -45,9 +48,9 @@ define(function (require) {
             
             /*****All generic model routes (i.e. just one item in the feed)******/
             "about-us": "getGenericModel",
+            "contact-us": "getGenericModel",
             
             /****Custum Routes******/
-            "contact": "getContact",
             "map": "getMap",
             "albums": "getAlbums",
             "photos/:id": "getPhotos",
@@ -337,16 +340,7 @@ define(function (require) {
                                  
             });
         },
-                
-    
-                
-        getContact: function () {
-            
-            require(["app/views/Contact"], function (Contact) { 
-                Useful.correctView(that.body);
-                slider.slidePage(new Contact().$el);               
-             });
-        },
+
                 
         getMap: function () {
             
@@ -569,27 +563,58 @@ define(function (require) {
         
         getAlbums: function (id) {
             //body.removeClass('left-nav');
-            require(["app/models/album", "app/views/AlbumList"], function (model, AlbumList) {
+            require(["app/models/album", "app/models/project", "app/views/AlbumList"], function (model, projectModel, AlbumList) {
        
                 if(typeof(albums)==='undefined' || albums===null){
                     
                     Useful.showSpinner();
                     
-                    albums = new model.AlbumCollection();
+                    /*
+                     * FOR BROWSER TESTING
+                     */
+                    if(in_browser===true){
+                        that.device_id = test_device_id;
+                        that.api_key = test_api_key;
+                    }
                     
-                    albums.fetch({
-                        full_url: false,
-                        success: function (collection) {
-                            Useful.correctView(that.body);
-                            slider.slidePage(new AlbumList({collection: collection}).$el);
-                            Useful.hideSpinner();
+                    if(typeof(that.device_id)==='undefined' || that.device_id===null){
+                        that.setDeviceDetails();
+                    }
+                    
+                    project = new projectModel.Project({id:project_title});
+                    //get flicker details
+
+                    project.fetch({
+                        api: true,
+                        headers: {device_id:that.device_id,api_key:that.api_key},        
+                        success: function (data) {
+
+                            flickr_user_id = data.get('flickr_user_id');
+                            flickr_api_key = data.get('flickr_api_key');
+                            
+                            albums = new model.AlbumCollection({flickr_api_key:flickr_api_key, flickr_user_id:flickr_user_id});
+
+                            albums.fetch({
+                                full_url: false,
+                                success: function (collection) {
+                                    Useful.correctView(that.body);
+                                    slider.slidePage(new AlbumList({collection: collection}).$el);
+                                    Useful.hideSpinner();
+                                },
+                                error: function(){
+                                        Useful.correctView(that.body);
+                                        Useful.hideSpinner();
+                                        Useful.checkNetwork(slider);
+                                }
+                            });
                         },
-                        error: function(){
-                                Useful.correctView(that.body);
-                                Useful.hideSpinner();
-                                Useful.checkNetwork(slider);
-                        }
+                        error:   function(model, xhr, options){
+                           alert('Error on fetch')
+                           console.log(xhr.responseText);
+                        },
                     });
+
+
                 }
                 else{ 
                     Useful.correctView(that.body);
@@ -606,7 +631,9 @@ define(function (require) {
             require(["app/models/photo", "app/views/PhotoList"], function (model, PhotoList) {
 
                     Useful.showSpinner();
-                    photos = new model.PhotoCollection([], {photoset_id:id});
+                    photos = new model.PhotoCollection([], {flickr_api_key:flickr_api_key,
+                                                            flickr_user_id:flickr_user_id,
+                                                            photoset_id:id});
                     
                     photos.fetch({
                         full_url: true,

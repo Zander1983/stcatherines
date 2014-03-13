@@ -5,7 +5,9 @@ define(function (require) {
     var _                   = require('underscore'),
         Backbone            = require('backbone'),
         tpl                 = require('text!tpl/GenericList.html'),
-        template = _.template(tpl);
+        template            = _.template(tpl),
+        empty_tpl           = require('text!tpl/EmptyList.html'),
+        empty_template = _.template(empty_tpl);
 
     return Backbone.View.extend({
 
@@ -24,7 +26,15 @@ define(function (require) {
             else{
                 context = Backbone.history.fragment;
             }
-            this.$el.html(template({items:this.collection.toJSON(), context:context}));
+            
+            if(this.collection.length>0){
+                this.$el.html(template({items:this.collection.toJSON(), context:context}));
+            }
+            else{
+                
+                this.$el.html(empty_template({context:context}));
+            }
+            
             return this;
         },
  

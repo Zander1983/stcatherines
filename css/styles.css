@@ -334,3 +334,20 @@ ul#picture-list > li{
 #topbar-title{
     text-transform:capitalize;
 }
+
+/*
+CSS for loading spinner on image
+*/
+
+DIV#loader {
+    width: 100%;
+    min-height: 50px;
+}
+
+/** 
+ * While we're having the loading class set.
+ * Removig it, will remove the loading message
+ */
+DIV#loader.loading {
+  background: url(images/spinner.gif) no-repeat center center;
+}

@@ -12,6 +12,7 @@ define(function (require) {
         url_s = "",
         url_o = "",
         url_sq = "",
+        url_m = "",
         
         Photo = Backbone.Model.extend({  
  
@@ -25,17 +26,19 @@ define(function (require) {
             url: function(){
 
                     if(in_browser===false){
-                        return 'http://api.flickr.com/services/rest/?&method=flickr.photosets.getPhotos&api_key=0ca57413706b5500f54f134b27f0c5c9&user_id=95277676@N06&extras=url_sq,url_t,url_s,url_m,url_o&photoset_id='+this.photoset_id;
+                        return 'http://api.flickr.com/services/rest/?&method=flickr.photosets.getPhotos&api_key='+this.flickr_api_key+'&user_id='+this.flickr_user_id+'&extras=url_sq,url_t,url_s,url_m,url_o&photoset_id='+this.photoset_id;
                     }
                     else{
-                        return "/school-proxy.php?context=photos&photoset_id="+this.photoset_id+"&flickr_api_key="+flickr_api_key+"&flickr_user_id="+flickr_user_id;;
+                        return "/school-proxy.php?context=photos&photoset_id="+this.photoset_id+"&flickr_api_key="+this.flickr_api_key+"&flickr_user_id="+this.flickr_user_id;
                     }
             },
          
             
             initialize: function (models, options) {
-                 parsed = [];
-                 this.photoset_id = options.photoset_id;
+                parsed = [];
+                this.photoset_id = options.photoset_id;
+                this.flickr_api_key = options.flickr_api_key;
+                this.flickr_user_id = options.flickr_user_id;
             },
         
             parse: function (data) {
@@ -51,10 +54,11 @@ define(function (require) {
                     title = $(this).attr('title');       
                     url_s = $(this).attr('url_s');
                     url_o = $(this).attr('url_o');
+                    url_m = $(this).attr('url_m');
                     url_sq = $(this).attr('url_sq');
   
                     parsed.push({id:id, album_title:album_title, title: title, 
-                                 url_s:url_s, url_o:url_o, url_sq:url_sq});
+                                 url_s:url_s, url_o:url_o, url_m:url_m, url_sq:url_sq});
                 
                 });
 

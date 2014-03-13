@@ -21,14 +21,19 @@ define(function (require) {
         AlbumCollection = Backbone.Collection.extend({
 
             model: Album,
+            
+            initialize: function (options) {
+                this.flickr_api_key = options.flickr_api_key;
+                this.flickr_user_id = options.flickr_user_id;
+            },
                         
             url: function(){
 
                     if(in_browser===false){
-                        return Feeds.getFeed();
+                        return'http://api.flickr.com/services/rest/?method=flickr.photosets.getList&api_key='+this.flickr_api_key+'&user_id='+this.flickr_user_id;
                     }
                     else{
-                        return "/school-proxy.php?context="+Backbone.history.fragment+"&flickr_api_key="+flickr_api_key+"&flickr_user_id="+flickr_user_id;
+                        return "/school-proxy.php?context=albums&flickr_api_key="+this.flickr_api_key+"&flickr_user_id="+this.flickr_user_id;
                     }
             },
             
