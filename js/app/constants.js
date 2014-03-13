@@ -12,7 +12,7 @@
         twitter_handle = "StCatherinesVoc",
         school_name = "St Catherines Vocational School",
         gmail = "stcatharines.vocational@gmail.com",
-        in_browser = true,
+        in_browser = false,
         is_push = false;  
   
     /********device id and api key for browser testing*********/

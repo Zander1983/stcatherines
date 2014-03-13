@@ -12,6 +12,7 @@
     $feeds["news"]  = '/index.php?option=com_ninjarsssyndicator&feed_id=3&format=raw';
     $feeds['events'] = 'https://www.google.com/calendar/feeds/'.$gmail.'/public/full?orderby=starttime&sortorder=ascending&max-results=10&futureevents=true';
     $feeds["about-us"]  = '/index.php?option=com_ninjarsssyndicator&feed_id=9&format=raw';
+    $feeds["contact-us"]  = '/index.php?option=com_ninjarsssyndicator&feed_id=17&format=raw';
     $feeds["courses"]  = '/index.php?option=com_ninjarsssyndicator&feed_id=5&format=raw';
     $feeds["sport"]  = '/index.php?option=com_ninjarsssyndicator&feed_id=6&format=raw';
     $feeds["music"]  = '/index.php?option=com_ninjarsssyndicator&feed_id=8&format=raw';
