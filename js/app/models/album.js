@@ -30,7 +30,7 @@ define(function (require) {
             url: function(){
 
                     if(in_browser===false){
-                        return'http://api.flickr.com/services/rest/?method=flickr.photosets.getList&api_key='+this.flickr_api_key+'&user_id='+this.flickr_user_id;
+                        return 'http://api.flickr.com/services/rest/?method=flickr.photosets.getList&api_key='+this.flickr_api_key+'&user_id='+this.flickr_user_id;
                     }
                     else{
                         return "/school-proxy.php?context=albums&flickr_api_key="+this.flickr_api_key+"&flickr_user_id="+this.flickr_user_id;
