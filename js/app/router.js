@@ -609,8 +609,11 @@ define(function (require) {
                             });
                         },
                         error:   function(model, xhr, options){
-                           alert('Error on fetch')
-                           console.log(xhr.responseText);
+                            console.log('response is');
+                            console.log(xhr.responseText);
+                            Useful.correctView(that.body);
+                            Useful.hideSpinner();
+                            Useful.checkNetwork(slider);
                         },
                     });
 

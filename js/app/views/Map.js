@@ -10,7 +10,7 @@ define(function (require) {
         
      function clickAway(event) {
     
-        that.body.find('#main-content').css('min-height', '1150px'); 
+        that.body.find('#main-content').css('min-height', '1250px'); 
         document.removeEventListener('backbutton', clickAway);
        
     }

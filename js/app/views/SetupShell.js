@@ -32,7 +32,7 @@ define(function (require) {
                 //console.log('in side nav click');
                     
                 if(window.location.hash==="#map"){
-                    that.options.body.find('#main-content').css('min-height', '1150px'); 
+                    that.options.body.find('#main-content').css('min-height', '1250px'); 
                 }
                 
                 $( this ).parent().parent().parent().find('li').each(function(){
@@ -49,7 +49,7 @@ define(function (require) {
                 
                 
                 if(window.location.hash==="#map"){
-                    that.options.body.find('#main-content').css('min-height', '1150px'); 
+                    that.options.body.find('#main-content').css('min-height', '1250px'); 
                 }
                 if (that.options.body.hasClass('left-nav')) {
 
@@ -81,7 +81,7 @@ define(function (require) {
             this.options.body.find("div#side-nav-cont a").click( function() {
 
                 if(window.location.hash==="#map"){
-                    that.options.body.find('#main-content').css('min-height', '1150px'); 
+                    that.options.body.find('#main-content').css('min-height', '1250px'); 
                 }
 
               $( this ).parent().parent().parent().find('li').each(function(){
