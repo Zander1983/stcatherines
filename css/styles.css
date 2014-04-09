@@ -4,6 +4,7 @@ html, body{
     overflow-x:hidden;
     height:100%;
     width:100%;
+    background-color: #fff;
 }
 
 
@@ -81,7 +82,7 @@ li.side-nav-active a{
 
 
 .topcoat-navigation-bar{
-    background-color: #c4a471;
+    background-color: #618ed7;
 }
 
 .topcoat-navigation-bar__item, .topcoat-navigation-bar__title{
@@ -177,7 +178,7 @@ body.left-nav .topcoat-navigation-bar, body.left-nav #main-content {
     overflow-x:hidden;
     
     position: absolute;
-    background: #dfe2e2;
+    background-color: #fff;
     left: 0;
     /*padding-top:4rem;*/
     margin-top:4rem;
@@ -277,6 +278,7 @@ html, body, #map-container{
 
 .topcoat-list{
     list-style-type: none;
+    background-color: #fff;
 }
 
 
